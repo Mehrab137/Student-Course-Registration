@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Undergraduateprogram extends Model
 {
     use HasFactory;
+
+    public $table = "undergraduateprograms";
 }
