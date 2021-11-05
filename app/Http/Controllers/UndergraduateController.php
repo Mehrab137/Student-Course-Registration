@@ -128,6 +128,53 @@ class UndergraduateController extends Controller
 
     }
 
+    public function viewUndergradList()
+    {
+
+        $undergraduateprograms = Undergraduateprogram::select(['id','UP_name','total_credits'])->get();
+        
+        return view('view_undergraduate_programs',['undergraduateprograms' => $undergraduateprograms]);
+
+    }
+
+    public function viewDepartmentList()
+    {
+
+        $departments = Department::select(['id','dept_name'])->get();
+
+        return view('view_department', ['departments' => $departments]);
+
+    }
+
+    public function viewCourseList()
+    {
+
+        $courses = Course::with(['department'])->get();
+
+        return view('view_courses', ['courses' => $courses]);
+
+    }
+
+    public function viewSectionList()
+    {
+
+        $sections = Section::with(['course'])->get();
+
+        return view('view_sections', ['sections' => $sections]);
+
+    }
+
+    public function viewStudentList()
+    {
+
+        $students = Student::with(['undergraduateProgram'])->get();
+
+        return view('view_students', ['students' => $students]);
+
+    }
+
+
+
 
 }
 

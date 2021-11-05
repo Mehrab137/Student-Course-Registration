@@ -10,4 +10,14 @@ class Course extends Model
     use HasFactory;
     
     public $table = "courses";
+
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department');
+    }
+
+    public function sections()
+    {
+        return $this->hasMany('App\Models\Section');
+    }
 }

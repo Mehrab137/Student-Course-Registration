@@ -10,4 +10,9 @@ class Student extends Model
     use HasFactory;
 
     public $table = "students";
+
+    public function undergraduateProgram()
+    {
+        return $this->belongsTo('App\Models\Undergraduateprogram','program_id','id');
+    }
 }

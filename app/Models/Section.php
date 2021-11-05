@@ -10,4 +10,9 @@ class Section extends Model
     use HasFactory;
 
     public $table = "sections";
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
 }
