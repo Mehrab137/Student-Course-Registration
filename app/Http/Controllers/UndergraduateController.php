@@ -173,8 +173,63 @@ class UndergraduateController extends Controller
 
     }
 
+    public function updateStudentView()
+    {
 
+        $programs = Undergraduateprogram::all($id);
 
+        return view('update_students' , compact('programs'));
+
+    }
+
+    public function updateStudentSubmit(Request $request, $id)
+    {
+
+        $students = Student::where('id', $id)
+                            ->update(['student_id' => $request->input('student_id'),
+                            'student_name' => $request->input('student_name'),
+                            'email_id' => $request->input('email_id'),
+                            'contact_number' => $request->input('contact_number'),
+                            'address' => $request->input('address'),
+                            'date_of_birth' => $request->input('date_of_birth'), 
+                            'program_id' => $request->input('program_id'),
+    ]);
+
+        $alert = [
+            'alert_msg' => 'Student Added Successfully !'
+        ];
+
+        return redirect()->route('view.student.list');
+
+    }
+
+    public function updateStudentList()
+    {
+
+        // $students = Student::update('');
+
+    }
+
+    public function editDepartmentView($department_id)
+    {
+        $department = Department::find($department_id);
+
+        return view('edit_department', compact('department'));
+    }
+
+    public function editDepartmentSubmit(Request $request, $department_id)
+    {
+        $department = Department::find($department_id);
+
+        $department->dept_name = $request->dept_name;
+
+        $department->save();
+
+        $alert = [
+            'alert_msg' => 'Department Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+    }
 
 }
-

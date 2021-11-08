@@ -5,7 +5,7 @@
  <br>
 <h2>Fill up the field below</h2><br>
 
-<form action="{{route('add.dept.submit')}}" method="POST">
+<form action="{{route('add.dept.submit')}}" method="POST" autocomplete="off">
     @csrf
 
     <div class="mb-3">

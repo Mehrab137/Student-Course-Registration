@@ -5,9 +5,9 @@
 
 <div class="row">
 
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12 mt-2">
 
-        <h4>Add Students</h4>
+        <h4>Update Students</h4>
 
     </div>
 
@@ -29,7 +29,7 @@
 
     <div class="col-md-12">
 
-        <form method="POST" action="{{ route('add.student.submit') }}">
+        <form method="POST" action="undergraduate/update-students/{{ $id->id }}">
 
             @csrf
 
@@ -93,8 +93,8 @@
 
 </div>
 
+{{-- {{Form::hidden('_method','PUT')}} --}}
 
 @endsection
-
 
 

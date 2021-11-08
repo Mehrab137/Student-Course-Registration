@@ -18,6 +18,7 @@
     
                     <th>#</th>
                     <th>Department Name</th>
+                    <th>Action</th>
     
                 </tr>
 
@@ -27,6 +28,7 @@
 
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $department->dept_name }}</td>
+                    <td><a href="{{ route('edit.department.view', $department->id) }}" class="btn btn-sm btn-warning">Edit</a></td>
 
                 </tr>
 
