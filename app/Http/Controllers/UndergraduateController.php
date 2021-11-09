@@ -24,7 +24,9 @@ class UndergraduateController extends Controller
         $undergrad = new Undergraduateprogram();
 
         $undergrad->UP_name =  $request->UP_name; 
+
         $undergrad->total_credits =  $request->total_credits; 
+
         $undergrad->save();
 
         return redirect()->route('add.undergrad.view');
@@ -40,7 +42,9 @@ class UndergraduateController extends Controller
     {
         
         $department = new Department();
+
         $department->dept_name = $request->dept_name;
+
         $department->save();
 
         return redirect()->route('add.dept.view');
@@ -59,7 +63,9 @@ class UndergraduateController extends Controller
         $course = new Course();
 
         $course->course_name = $request->course_name;
+
         $course->course_credit = $request->course_credit;
+        
         $course->department_id = $request->department_id;
 
         $course->save();
@@ -84,11 +90,17 @@ class UndergraduateController extends Controller
         $section = new Section();
 
         $section->section_name = $request->section_name;
+
         $section->start_time = $request->start_time;
+
         $section->end_time = $request->end_time;
+
         $section->days = $request->days;
+
         $section->total_seats = $request->total_seats;
+
         $section->course_id = $request->course_id;
+
         $section->save();
 
         $alert = [
@@ -112,12 +124,19 @@ class UndergraduateController extends Controller
         $student = new Student();
 
         $student->student_id = $request->student_id;
+        
         $student->student_name = $request->student_name;
+
         $student->email_id = $request->email_id;
+
         $student->contact_number = $request->contact_number;
+
         $student->address = $request->address;
+
         $student->date_of_birth = $request->date_of_birth;
+
         $student->program_id = $request->program_id;
+
         $student->save();
 
         $alert = [
@@ -173,43 +192,6 @@ class UndergraduateController extends Controller
 
     }
 
-    public function updateStudentView()
-    {
-
-        $programs = Undergraduateprogram::all($id);
-
-        return view('update_students' , compact('programs'));
-
-    }
-
-    public function updateStudentSubmit(Request $request, $id)
-    {
-
-        $students = Student::where('id', $id)
-                            ->update(['student_id' => $request->input('student_id'),
-                            'student_name' => $request->input('student_name'),
-                            'email_id' => $request->input('email_id'),
-                            'contact_number' => $request->input('contact_number'),
-                            'address' => $request->input('address'),
-                            'date_of_birth' => $request->input('date_of_birth'), 
-                            'program_id' => $request->input('program_id'),
-    ]);
-
-        $alert = [
-            'alert_msg' => 'Student Added Successfully !'
-        ];
-
-        return redirect()->route('view.student.list');
-
-    }
-
-    public function updateStudentList()
-    {
-
-        // $students = Student::update('');
-
-    }
-
     public function editDepartmentView($department_id)
     {
         $department = Department::find($department_id);
@@ -219,6 +201,7 @@ class UndergraduateController extends Controller
 
     public function editDepartmentSubmit(Request $request, $department_id)
     {
+        
         $department = Department::find($department_id);
 
         $department->dept_name = $request->dept_name;
@@ -230,6 +213,152 @@ class UndergraduateController extends Controller
         ];
 
         return back()->with($alert);
+
+    }
+
+    public function editUndergradView($undergrad_id)
+    {
+
+        $undergrad = Undergraduateprogram::find($undergrad_id);
+
+        return view('edit_undergraduate_programs',compact('undergrad'));
+
+    }
+
+    public function editUndergradSubmit(Request $request, $undergrad_id)
+    {
+
+        $undergrad = Undergraduateprogram::find($undergrad_id);
+
+        $undergrad->UP_name = $request->UP_name;
+        
+        $undergrad->total_credits = $request->total_credits;
+
+        $undergrad->save();
+
+        $alert = [
+            'alert_msg' => 'Undergraduate Program Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+
+    }
+
+    public function editCourseView($course_id)
+    {
+
+        $course = Course::with(['department'])->find($course_id);
+
+        $departments = Department::all();
+
+        return view('edit_courses', compact('course', 'departments'));
+
+    }
+
+    public function editCourseSubmit(Request $request, $course_id)
+    {
+
+        $course = Course::with(['department'])->find($course_id);
+        
+        $departments = Department::all();
+
+        $course->course_name = $request->course_name;
+
+        $course->course_credit = $request->course_credit;
+
+        $course->department_id = $request->department_id;
+
+        $course->save();
+
+        $alert = [
+            'alert_msg' => 'Course Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+
+    }
+
+    public function editSectionView($section_id)
+    {
+
+        $section = Section::with(['course'])->find($section_id);
+
+        $courses = Course::all();
+
+        return view('edit_sections', compact('section', 'courses'));
+
+    }
+
+    public function editSectionSubmit(Request $request, $section_id)
+    {
+
+        $section = Section::with(['course'])->find($section_id);
+
+        $courses = Course::all();
+
+        $section->section_name = $request->section_name;
+
+        $section->start_time = $request->start_time;
+
+        $section->end_time = $request->end_time;
+
+        $section->days = $request->days;
+
+        $section->total_seats = $request->total_seats;
+
+        $section->course_id = $request->course_id;
+
+        $section->save();
+
+        $alert = [
+            'alert_msg' => 'Section Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+
+    }
+
+    public function editStudentView($student_id)
+    {
+
+        $student = Student::with(['undergraduateProgram'])->find($student_id);
+
+        $programs = Undergraduateprogram::all();
+
+        return view('edit_students', compact('student', 'programs'));
+
+    }
+
+    public function editStudentSubmit(Request $request, $student_id)
+    {
+
+        $student = Student::with(['undergraduateProgram'])->find($student_id);
+
+        $programs = Undergraduateprogram::all();
+
+        $student->student_id = $request->student_id;
+
+        $student->student_name = $request->student_name;
+
+        $student->email_id = $request->email_id;
+
+        $student->contact_number = $request->contact_number;
+
+        $student->address = $request->address;
+
+        $student->date_of_birth = $request->date_of_birth;
+
+        $student->program_id = $request->program_id;
+
+        $student->save();
+
+        $alert = [
+            'alert_msg' => 'Section Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+
+    
     }
 
 }

@@ -6,7 +6,7 @@
 
     <div class="col-md-12 mt-3">
 
-        <h4>Add Courses</h4>
+        <h4>Edit Courses</h4>
 
     </div>
 
@@ -28,18 +28,18 @@
 
     <div class="col-md-12">
 
-        <form method="POST" action="{{ route('add.course.submit') }}">
+        <form method="POST" action="{{ route('edit.course.submit', $course->id) }}">
 
             @csrf
 
             <div class="form-group mt-3">
                 <label class="form-label">Course Name:</label>
-                <input type="text" name="course_name" class="form-control" >
+                <input type="text" name="course_name" value="{{ $course->course_name }}" class="form-control" >
             </div>
 
             <div class="form-group mt-3">
                 <label class="form-label">Credits:</label>
-                <input type="text" name="course_credit" class="form-control" >
+                <input type="text" name="course_credit" value="{{ $course->course_credit }}" class="form-control" >
             </div>
 
             <div class="form-group mt-3">
@@ -52,7 +52,7 @@
 
                     @foreach ($departments as $department)
                         
-                        <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
+                        <option value="{{ $department->id }}" {{ $department->id == $course->department->id ? "selected" : "" }} >{{ $department->dept_name }}</option>
 
                     @endforeach
 
@@ -62,7 +62,7 @@
 
             <div class="form-group mt-3">
                 
-                <input type="submit" value="Add" class="btn btn-primary">
+                <input type="submit" value="Confirm" class="btn btn-primary">
 
             </div>
 

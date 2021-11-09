@@ -16,5 +16,4 @@ class Student extends Model
         return $this->belongsTo('App\Models\Undergraduateprogram','program_id','id');
     }
 
-    protected $primarykey = 'id';
 }

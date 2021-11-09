@@ -9,9 +9,15 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'], function(){
 
-    Route::get('programs', 'UndergraduateController@addUndergradView')->name('add.undergrad.view');
+    Route::get('add-programs', 'UndergraduateController@addUndergradView')->name('add.undergrad.view');
 
     Route::post('submit-programs', 'UndergraduateController@addUndergradSubmit')->name('add.undergrad.submit');
+
+    Route::get('view-programs', 'UndergraduateController@viewUndergradList')->name('view.undergrad.list');
+
+    Route::get('edit-programs/{undergrad_id}', 'UndergraduateController@editUndergradView')->name('edit.undergrad.view');
+
+    Route::post('edit-programs/{undergrad_id}', 'UndergraduateController@editUndergradSubmit')->name('edit.undergrad.submit');
 
 
     Route::get('add-department', 'UndergraduateController@addDepartmentView')->name('add.dept.view');
@@ -29,25 +35,35 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('add-course', 'UndergraduateController@addCourseSubmit')->name('add.course.submit');
 
+    Route::get('view-courses', 'UndergraduateController@viewCourseList')->name('view.course.list');
+
+    Route::get('edit-courses/{course_id}', 'UndergraduateController@editCourseView')->name('edit.course.view');
+
+    Route::post('edit-courses/{course_id}', 'UndergraduateController@editCourseSubmit')->name('edit.course.submit');
+
+
     Route::get('add-section', 'UndergraduateController@addSectionView')->name('add.section.view');
 
     Route::post('add-section', 'UndergraduateController@addSectionSubmit')->name('add.section.submit');
+
+    Route::get('view-sections', 'UndergraduateController@viewSectionList')->name('view.section.list');
+
+    Route::get('edit-sections/{section_id}', 'UndergraduateController@editSectionView')->name('edit.section.view');
+
+    Route::post('edit-sections/{section_id}', 'UndergraduateController@editSectionSubmit')->name('edit.section.submit');
+
+
 
     Route::get('add-students', 'UndergraduateController@addStudentView')->name('add.student.view');
 
     Route::post('add-students', 'UndergraduateController@addStudentSubmit')->name('add.student.submit');
 
-    Route::get('view-programs', 'UndergraduateController@viewUndergradList')->name('view.undergrad.list');
-    
-    Route::get('view-courses', 'UndergraduateController@viewCourseList')->name('view.course.list');
-
-    Route::get('view-sections', 'UndergraduateController@viewSectionList')->name('view.section.list');
-    
     Route::get('view-students', 'UndergraduateController@viewStudentList')->name('view.student.list');
 
-    Route::get('update-students/{id}', 'UndergraduateController@updateStudentView')->name('update.student.view');
+    Route::get('edit-students/{program_id}', 'UndergraduateController@editStudentView')->name('edit.student.view');
 
-    Route::post('update-students', 'UndergraduateController@updateStudentSubmit')->name('update.student.submit');
+    Route::post('edit-students/{program_id}', 'UndergraduateController@editStudentSubmit')->name('edit.student.submit');
+    
     
 
 });

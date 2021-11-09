@@ -21,6 +21,7 @@
                 <th>Contact Number</th>
                 <th>Date of Birth</th>
                 <th>Undergraduate Program</th>
+                <th>Action</th>
 
             </tr>
 
@@ -35,6 +36,7 @@
                     <td>{{ $student->contact_number }}</td>
                     <td>{{ $student->date_of_birth }}</td>
                     <td>{{ $student->undergraduateProgram->UP_name }}</td>
+                    <td><a href="{{ route('edit.student.view', $student->id) }}" class="btn btn-sm btn-warning">Edit</a></td>
                     
                 </tr>
 

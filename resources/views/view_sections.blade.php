@@ -23,6 +23,7 @@
                     <th>Days</th>
                     <th>Total Seats</th>
                     <th>Course Name</th>
+                    <th>Action</th>
     
                 </tr>
 
@@ -37,6 +38,7 @@
                     <td>{{ $section->days }}</td>
                     <td>{{ $section->total_seats }}</td>
                     <td>{{ $section->course->course_name}}</td>
+                    <td><a href="{{ route('edit.section.view', $section->id) }}" class="btn btn-sm btn-warning">Edit</a></td>
 
                 </tr>
 

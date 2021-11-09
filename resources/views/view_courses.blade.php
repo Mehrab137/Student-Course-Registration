@@ -20,6 +20,7 @@
                     <th>Course Name</th>
                     <th>Course Credit</th>
                     <th>Department Name</th>
+                    <th>Action</th>
     
                 </tr>
     
@@ -37,6 +38,7 @@
                         <td>{{ $course->course_name }}</td>
                         <td>{{ $course->course_credit }}</td>
                         <td>{{ $course->department->dept_name }}</td>
+                        <td><a href="{{ route('edit.course.view', $course->id) }}" class="btn btn-sm btn-warning">Edit</a></td>
 
                         {{-- MANUAL WAY
                         <td>{{ $department->dept_name }}</td> --}}

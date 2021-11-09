@@ -19,6 +19,7 @@
                     <th>#</th>
                     <th>Course Name</th>
                     <th>Course Credit</th>
+                    <th>Action</th>
     
                 </tr>
 
@@ -29,6 +30,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $undergraduateprogram->UP_name }}</td>
                     <td>{{ $undergraduateprogram->total_credits }}</td>
+                    <td><a href="{{ route('edit.undergrad.view', $undergraduateprogram->id) }}" class="btn btn-sm btn-warning">Edit</a></td>
 
                 </tr>
 
