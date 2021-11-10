@@ -33,37 +33,37 @@
 
             @csrf
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Student ID:</label>
                 <input type="number" name="student_id" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Student Name:</label>
                 <input type="text" name="student_name" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Email:</label>
                 <input type="text" name="email_id" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Contact Number:</label>
                 <input type="number" name="contact_number" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Address:</label>
                 <input type="text" name="address" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
                 <label class="form-label">Date of Birth:</label>
                 <input type="date" name="date_of_birth" class="form-control" >
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-2">
 
                 <label class="form-label">Undergraduate Program:</label>
 
@@ -83,7 +83,7 @@
 
             <div class="form-group mt-3">
                 
-                <input type="submit" value="Submit" class="btn btn-primary">
+                <input type="submit" value="Add" class="btn btn-primary">
 
             </div>
 

@@ -3,7 +3,7 @@
 @section('content')
 
  <br>
-<h2>Fill up the fields below</h2><br>
+<h3>Add Undergraduate Program</h3><br>
 
 <form action="{{route('add.undergrad.submit')}}" method="POST">
     @csrf

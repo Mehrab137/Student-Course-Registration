@@ -192,30 +192,6 @@ class UndergraduateController extends Controller
 
     }
 
-    public function editDepartmentView($department_id)
-    {
-        $department = Department::find($department_id);
-
-        return view('edit_department', compact('department'));
-    }
-
-    public function editDepartmentSubmit(Request $request, $department_id)
-    {
-        
-        $department = Department::find($department_id);
-
-        $department->dept_name = $request->dept_name;
-
-        $department->save();
-
-        $alert = [
-            'alert_msg' => 'Department Edited Successfully !'
-        ];
-
-        return back()->with($alert);
-
-    }
-
     public function editUndergradView($undergrad_id)
     {
 
@@ -244,7 +220,31 @@ class UndergraduateController extends Controller
 
     }
 
-    public function editCourseView($course_id)
+    public function editDepartmentView($department_id)
+    {
+        $department = Department::find($department_id);
+
+        return view('edit_department', compact('department'));
+    }
+
+    public function editDepartmentSubmit(Request $request, $department_id)
+    {
+        
+        $department = Department::find($department_id);
+
+        $department->dept_name = $request->dept_name;
+
+        $department->save();
+
+        $alert = [
+            'alert_msg' => 'Department Edited Successfully !'
+        ];
+
+        return back()->with($alert);
+
+    }
+
+     public function editCourseView($course_id)
     {
 
         $course = Course::with(['department'])->find($course_id);
@@ -358,7 +358,91 @@ class UndergraduateController extends Controller
 
         return back()->with($alert);
 
-    
+    }
+
+    public function deleteUndergrad(Request $request)
+    {
+
+        $undergrad = Undergraduateprogram::find($request->undergrad_id);
+
+        $undergrad->delete();
+
+        $alert = [
+
+            'alert_msg' => 'Undergraduate Program Deleted Successfully'
+
+        ];
+
+        return redirect()->route('view.undergrad.list')->with($alert);
+
+    }
+
+    public function deleteDepartment(Request $request)
+    {
+
+        $department = Department::find($request->department_id);
+
+        $department->delete();
+
+        $alert = [
+
+            'alert_msg' => 'Department Deleted Successfully'
+
+        ];
+
+        return redirect()->route('view.department.list')->with($alert);
+
+    }
+
+    public function deleteCourse(Request $request)
+    {
+
+        $course = Course::find($request->course_id);
+
+        $course->delete();
+
+        $alert = [
+
+            'alert_msg' => 'Course Deleted Successfully'
+
+        ];
+
+        return redirect()->route('view.course.list')->with($alert);
+
+    }
+
+    public function deleteSection(Request $request)
+    {
+
+        $section = Section::find($request->section_id);
+
+        $section->delete();
+
+        $alert = [
+
+            'alert_msg' => 'Section Deleted Successfully !'
+
+        ];
+
+        return redirect()->route('view.section.list')->with($alert);
+
+    }
+
+    public function deleteStudent(Request $request)
+    {
+
+        $student = Student::find($request->student_id);
+
+        $student->delete();
+
+        $alert = [
+
+            'alert_msg' => 'Student Deleted Successfully !'
+
+        ];
+
+        return redirect()->route('view.student.list')->with($alert);
+
     }
 
 }

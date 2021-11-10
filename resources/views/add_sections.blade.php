@@ -78,7 +78,7 @@
 
             <div class="form-group mt-3">
                 
-                <input type="submit" value="Submit" class="btn btn-primary">
+                <input type="submit" value="Add" class="btn btn-primary">
 
             </div>
 

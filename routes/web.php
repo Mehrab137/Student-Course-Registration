@@ -19,6 +19,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('edit-programs/{undergrad_id}', 'UndergraduateController@editUndergradSubmit')->name('edit.undergrad.submit');
 
+    Route::post('delete-programs', 'UndergraduateController@deleteUndergrad')->name('delete.undergrad');
+
 
     Route::get('add-department', 'UndergraduateController@addDepartmentView')->name('add.dept.view');
 
@@ -29,6 +31,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::get('edit-department/{department_id}', 'UndergraduateController@editDepartmentView')->name('edit.department.view');
 
     Route::post('edit-department/{department_id}', 'UndergraduateController@editDepartmentSubmit')->name('edit.department.submit');
+
+    Route::post('delete-department', 'UndergraduateController@deleteDepartment')->name('delete.department');
 
 
     Route::get('add-course', 'UndergraduateController@addCourseView')->name('add.course.view');
@@ -41,6 +45,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('edit-courses/{course_id}', 'UndergraduateController@editCourseSubmit')->name('edit.course.submit');
 
+    Route::post('delete-course', 'UndergraduateController@deleteCourse')->name('delete.course');
+
 
     Route::get('add-section', 'UndergraduateController@addSectionView')->name('add.section.view');
 
@@ -52,6 +58,7 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('edit-sections/{section_id}', 'UndergraduateController@editSectionSubmit')->name('edit.section.submit');
 
+    Route::post('delete-section', 'UndergraduateController@deleteSection')->name('delete.section');
 
 
     Route::get('add-students', 'UndergraduateController@addStudentView')->name('add.student.view');
@@ -64,6 +71,6 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('edit-students/{program_id}', 'UndergraduateController@editStudentSubmit')->name('edit.student.submit');
     
-    
+    Route::post('delete-student', 'UndergraduateController@deleteStudent')->name('delete.student');
 
 });
