@@ -34,11 +34,6 @@
             @csrf
 
             <div class="form-group mt-2">
-                <label class="form-label">Student ID:</label>
-                <input type="number" name="student_id" class="form-control" >
-            </div>
-
-            <div class="form-group mt-2">
                 <label class="form-label">Student Name:</label>
                 <input type="text" name="student_name" class="form-control" >
             </div>

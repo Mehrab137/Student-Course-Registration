@@ -52,7 +52,7 @@
                      <td>{{ $student->student_name }}</td>
                      <td>{{ $student->email_id }}</td>
                      <td>{{ $student->contact_number }}</td>
-                     <td>{{ date_format(date_create($student->date_of_birth), "d-M-Y") }}</td>
+                     <td>{{ date_format(date_create($student->date_of_birth), "d/M/Y") }}</td>
                      <td>{{ $student->undergraduateProgram->UP_name }}</td>
                      <td><a href="{{ route('edit.student.view', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
                          
