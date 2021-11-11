@@ -86,6 +86,14 @@ class UndergraduateController extends Controller
 
     public function addSectionSubmit(Request $request)
     {
+        $sections = Section::where('section_name', '=', $request->section_name)
+                                ->where('course_id', '=', $request->course_id)
+                                ->get();
+        
+        if(count($sections) > 0)
+        {
+             return back();
+        }
 
         $section = new Section();
 
@@ -120,10 +128,10 @@ class UndergraduateController extends Controller
     
     public function addStudentSubmit(Request $request)
     {
-    
+
         $student = new Student();
 
-        $student->student_id = $request->student_id;
+        $student->student_id = date('y') . date('d');
         
         $student->student_name = $request->student_name;
 
@@ -136,6 +144,12 @@ class UndergraduateController extends Controller
         $student->date_of_birth = $request->date_of_birth;
 
         $student->program_id = $request->program_id;
+
+        $student->save();
+
+        $student->student_id .= $student->id;
+
+        // $student->student_id = $student->student_id . $student->id;
 
         $student->save();
 
