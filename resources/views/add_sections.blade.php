@@ -11,6 +11,18 @@
 
     </div>
 
+    @if ($errors->any())
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+    
     @if(Session::has('alert_msg'))
 
         <div class="col-md-12">
@@ -35,27 +47,27 @@
 
             <div class="form-group mt-2">
                 <label class="form-label">Section Name:</label>
-                <input type="text" name="section_name" class="form-control" >
+                <input type="text" name="section_name" class="form-control"  value="{{ old('section_name') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Start time:</label>
-                <input type="time" name="start_time" class="form-control" >
+                <input type="time" name="start_time" class="form-control" value="{{ old('start_time') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">End time:</label>
-                <input type="time" name="end_time" class="form-control" >
+                <input type="time" name="end_time" class="form-control" value="{{ old('end_time') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Days:</label>
-                <input type="text" name="days" class="form-control" >
+                <input type="text" name="days" class="form-control" value="{{ old('days') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Total Seats:</label>
-                <input type="number" name="total_seats" class="form-control" >
+                <input type="number" name="total_seats" class="form-control" value="{{ old('total_seats') }}">
             </div>
 
             <div class="form-group mt-2">
@@ -68,7 +80,7 @@
 
                     @foreach ($courses as $course)
                         
-                        <option value="{{ $course->id }}">{{ $course->course_name }}</option>
+                        <option value="{{ $course->id }}"{{ old('course_id') == $course->id ? "selected" : "" }}>{{ $course->course_name }}</option>
 
                     @endforeach
 

@@ -20,7 +20,27 @@ class UndergraduateController extends Controller
 
     public function addUndergradSubmit(Request $request)
     {
-       
+        $validator = $request->validate([
+
+            'UP_name' => 'required|unique:undergraduateprograms,UP_name|max:50',
+
+            'total_credits' => 'required|digits:3',
+
+        ],
+        [
+
+            'UP_name.required' => 'The Undergraduate Program field is required',
+
+            'UP_name.unique' => 'The Undergraduate Program already exists',
+
+            'UP_name.max' => 'The Undergraduate Program name can not be this long xD',
+
+            'total_credits.required' => 'The Total Credits field is required',
+
+            'total_credits.digits' => 'Invalid Total Credits'
+
+        ]);
+
         $undergrad = new Undergraduateprogram();
 
         $undergrad->UP_name =  $request->UP_name; 
@@ -46,7 +66,19 @@ class UndergraduateController extends Controller
     
     public function addDepartmentSubmit(Request $request)
     {
-        
+        $validator = $request->validate([
+
+            'dept_name' => 'required|unique:departments,dept_name|max:50'
+
+        ],
+        [
+
+            'dept_name.required' => 'The Department Name field is required',
+
+            'dept_name.unique' => 'The Department Name already exists'
+
+        ]);
+
         $department = new Department();
 
         $department->dept_name = $request->dept_name;
@@ -72,6 +104,26 @@ class UndergraduateController extends Controller
 
     public function addCourseSubmit(Request $request)
     {
+        $validator = $request->validate([
+
+            'course_name' => 'required|unique:courses,course_name|max:50',
+
+            'course_credit' => 'required',
+
+            'department_id' => 'required'
+
+        ],
+        [
+            'course_name.required' => 'The Course Name field is required',
+
+            'course_name.unique' => 'Course Name already exists',
+            
+            'course_credit.required' => 'The Credits field is required',
+
+            'department_id.required' => 'Selecting Department is required'
+
+        ]);
+
         $course = new Course();
 
         $course->course_name = $request->course_name;
@@ -100,6 +152,37 @@ class UndergraduateController extends Controller
 
     public function addSectionSubmit(Request $request)
     {
+        $validator = $request->validate([
+
+            'section_name' => 'required',
+
+            'start_time' => 'required',
+
+            'end_time' => 'required',
+
+            'days' => 'required',
+
+            'total_seats' => 'required',
+
+            'course_id' => 'required'
+
+        ],
+    [
+
+        'section_name.required' => 'The Section Name field is required',
+
+        'start_time.required' => 'The Start Time field is required',
+
+        'end_time.required' => 'The End Time field is required',
+
+        'days.required' => ' The Days field is required',
+
+        'total_seats.required' => 'The Total Seats field is required',
+
+        'course_id.required' => 'Selecting Course is required'
+
+    ]);
+
         $sections = Section::where('section_name', '=', $request->section_name)
                                 ->where('course_id', '=', $request->course_id)
                                 ->get();
@@ -144,6 +227,43 @@ class UndergraduateController extends Controller
     
     public function addStudentSubmit(Request $request)
     {
+
+        $validator = $request->validate([
+
+            'student_name' => 'required|max:50',
+
+            'email_id' => 'required|email|unique:students,email_id',
+
+            'contact_number' => 'required|digits:11|unique:students,contact_number',
+
+            'address' => 'required|max:100',
+
+            'date_of_birth' => 'required',
+
+            'program_id' => 'required'
+
+        ],
+    [
+
+        'student_name.required' => 'Student Name field is required',
+
+        'email_id.required' => 'Email field is required',
+
+        'email_id.email' => 'Insert valid Email address',
+
+        'email_id.unique' => 'The Email already exists ',
+
+        'contact_number.required' => 'Contact Number field is required',
+
+        'contact_number.unique' => 'The Contact Number already exists',
+
+        'address.required' => 'Address field is required',
+
+        'date_of_birth.required' => 'Date of Birth field is required',
+
+        'program_id.required' => 'Selecting Undergraduate Program is required'
+
+    ]);
 
         $student = new Student();
 
@@ -395,7 +515,7 @@ class UndergraduateController extends Controller
         $alert = [
 
             'alert_msg' => 'Section Edited Successfully !'
-            
+
         ];
 
         return back()->with($alert);

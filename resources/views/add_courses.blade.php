@@ -10,6 +10,18 @@
 
     </div>
 
+    @if ($errors->any())
+        <div class="col-md-12 mt-2">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
     @if(Session::has('alert_msg'))
 
         <div class="col-md-12">
@@ -34,12 +46,12 @@
 
             <div class="form-group mt-3">
                 <label class="form-label">Course Name:</label>
-                <input type="text" name="course_name" class="form-control" >
+                <input type="text" name="course_name" class="form-control" value="{{ old('course_name') }}" >
             </div>
 
             <div class="form-group mt-3">
                 <label class="form-label">Credits:</label>
-                <input type="text" name="course_credit" class="form-control" >
+                <input type="text" name="course_credit" class="form-control" value="{{ old('course_credit') }}" >
             </div>
 
             <div class="form-group mt-3">
@@ -52,7 +64,7 @@
 
                     @foreach ($departments as $department)
                         
-                        <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
+                        <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? "selected" : "" }}>{{ $department->dept_name }}</option>
 
                     @endforeach
 

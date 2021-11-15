@@ -10,6 +10,18 @@
         <h4>Add Students</h4>
 
     </div>
+    
+    @if ($errors->any())
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
 
     @if(Session::has('alert_msg'))
 
@@ -35,27 +47,27 @@
 
             <div class="form-group mt-2">
                 <label class="form-label">Student Name:</label>
-                <input type="text" name="student_name" class="form-control" >
+                <input type="text" name="student_name" class="form-control" value="{{ old('student_name') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Email:</label>
-                <input type="text" name="email_id" class="form-control" >
+                <input type="text" name="email_id" class="form-control" value="{{ old('email_id') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Contact Number:</label>
-                <input type="number" name="contact_number" class="form-control" >
+                <input type="number" name="contact_number" class="form-control" value="{{ old('contact_number') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Address:</label>
-                <input type="text" name="address" class="form-control" >
+                <input type="text" name="address" class="form-control" value="{{ old('address') }}">
             </div>
 
             <div class="form-group mt-2">
                 <label class="form-label">Date of Birth:</label>
-                <input type="date" name="date_of_birth" class="form-control" >
+                <input type="date" name="date_of_birth" class="form-control" value="{{ old('date_of_birth') }}">
             </div>
 
             <div class="form-group mt-2">
@@ -68,7 +80,7 @@
 
                     @foreach ($programs as $program)
                         
-                        <option value="{{ $program->id }}">{{ $program->UP_name }}</option>
+                        <option value="{{ $program->id }}"{{ old('program_id') == $program->id ? "selected" : "" }}>{{ $program->UP_name }}</option>
 
                     @endforeach
 
