@@ -29,7 +29,13 @@ class UndergraduateController extends Controller
 
         $undergrad->save();
 
-        return redirect()->route('add.undergrad.view');
+        $alert = [
+
+            'alert_msg' => 'Undergraduate Program Added Successfully !'
+
+        ];
+
+        return redirect()->route('add.undergrad.view')->with($alert);
 
     }
 
@@ -47,7 +53,13 @@ class UndergraduateController extends Controller
 
         $department->save();
 
-        return redirect()->route('add.dept.view');
+        $alert = [
+
+            'alert_msg' => 'Department Added Successfully !'
+
+        ];
+
+        return redirect()->route('add.dept.view')->with($alert);
 
     }
 
@@ -71,7 +83,9 @@ class UndergraduateController extends Controller
         $course->save();
 
         $alert = [
+
             'alert_msg' => 'Course Added Successfully !'
+
         ];
 
         return redirect()->route('add.course.view')->with($alert);
@@ -112,7 +126,9 @@ class UndergraduateController extends Controller
         $section->save();
 
         $alert = [
+
             'alert_msg' => 'Section Added Successfully !'
+
         ];
 
         return  redirect()->route('add.section.view')->with($alert);
@@ -154,7 +170,9 @@ class UndergraduateController extends Controller
         $student->save();
 
         $alert = [
+
             'alert_msg' => 'Student Added Successfully !'
+
         ];
 
         return redirect()->route('add.student.view')->with($alert);
@@ -227,7 +245,9 @@ class UndergraduateController extends Controller
         $undergrad->save();
 
         $alert = [
+
             'alert_msg' => 'Undergraduate Program Edited Successfully !'
+
         ];
 
         return back()->with($alert);
@@ -251,7 +271,9 @@ class UndergraduateController extends Controller
         $department->save();
 
         $alert = [
+
             'alert_msg' => 'Department Edited Successfully !'
+
         ];
 
         return back()->with($alert);
@@ -285,7 +307,9 @@ class UndergraduateController extends Controller
         $course->save();
 
         $alert = [
+
             'alert_msg' => 'Course Edited Successfully !'
+
         ];
 
         return back()->with($alert);
@@ -325,7 +349,9 @@ class UndergraduateController extends Controller
         $section->save();
 
         $alert = [
+
             'alert_msg' => 'Section Edited Successfully !'
+
         ];
 
         return back()->with($alert);
@@ -367,7 +393,9 @@ class UndergraduateController extends Controller
         $student->save();
 
         $alert = [
+
             'alert_msg' => 'Section Edited Successfully !'
+            
         ];
 
         return back()->with($alert);
@@ -387,7 +415,7 @@ class UndergraduateController extends Controller
 
         ];
 
-        return redirect()->route('view.undergrad.list')->with($alert);
+        return back()->with($alert);
 
     }
 
@@ -404,7 +432,7 @@ class UndergraduateController extends Controller
 
         ];
 
-        return redirect()->route('view.department.list')->with($alert);
+        return back()->with($alert);
 
     }
 
@@ -421,7 +449,7 @@ class UndergraduateController extends Controller
 
         ];
 
-        return redirect()->route('view.course.list')->with($alert);
+        return back()->with($alert);
 
     }
 
@@ -438,7 +466,7 @@ class UndergraduateController extends Controller
 
         ];
 
-        return redirect()->route('view.section.list')->with($alert);
+        return back()->with($alert);
 
     }
 
@@ -455,7 +483,7 @@ class UndergraduateController extends Controller
 
         ];
 
-        return redirect()->route('view.student.list')->with($alert);
+        return back()->with($alert);
 
     }
 
