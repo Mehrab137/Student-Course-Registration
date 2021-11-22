@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExportController;
 
 
 Route::get('/', function () {
@@ -74,3 +75,5 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::post('delete-student', 'UndergraduateController@deleteStudent')->name('delete.student');
 
 });
+
+    Route::get('view-students/excel', 'App\Http\Controllers\ExportController@exportStudent')->name('export.student.excel');
