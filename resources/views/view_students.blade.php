@@ -24,7 +24,7 @@
 
     @endif
 
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12 mt-2">
 
         <div class="table-responsive">
 
@@ -71,12 +71,14 @@
 
                   @endforeach
 
-            </table>
-
-         </div>
+                </table>
+            
+            </div>
+        
+        </div>
 
     </div>
-
-</div>
+   
+    <button href="{{ route('export.student.excel') }}" class="btn btn-sm btn-success" type="button" style="position: fixed; bottom:5px;right:5px;">Export as Spreadsheet</button>
 
 @endsection

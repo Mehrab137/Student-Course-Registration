@@ -8,18 +8,33 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithStyles;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class StudentExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping, WithStyles 
+class StudentExport implements 
+    FromCollection, 
+    ShouldAutoSize, 
+    WithHeadings, 
+    WithMapping, 
+    WithEvents
+
 {
     use Exportable;
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+
+    public $serial;
+
+    public function __construct()
+    {
+
+        $this->serial = 0;
+
+    }
+
     public function collection()
     {
-        return Student::all();
+        
+        return Student::with('undergraduateProgram')->get();
+
     }
 
     public function headings():array
@@ -33,44 +48,63 @@ class StudentExport implements FromCollection, ShouldAutoSize, WithHeadings, Wit
             'Contact',
             'Address',
             'Date OF Birth',
-            'Program ID',
+            'Undergraduate Program',
 
         ];
     }
 
     public function map($student):array
     {
+        $this->serial++;
 
         return [
 
-            $student->id,
+            $this->serial,
             $student->student_id,
             $student->student_name,
             $student->email_id,
             $student->contact_number,
             $student->address,
             $student->date_of_birth,
-            $student->program_id
+            $student->Undergraduateprogram->UP_name
 
         ];
 
     }
 
-    public function styles(Worksheet $sheets)
+    public function registerEvents():array
     {
+        return [
 
-        // return [
+            Aftersheet::class => function(Aftersheet $event){
 
-        //     1  => ['font' => ['bold' => true]],
-        //     1  => ['font' => ['italic' => true]],
-        //     1  => ['font' => ['size' => 16]],
+                $event->sheet->getStyle('A1:H1')->applyFromArray([
+                    
+                    'font' => [
+                    
+                        'bold' => true,
+                        'italic' => true,
+                        'size' => '16',
 
-        // ];
+                    ],
 
-        $sheets->getStyle('1')->getFont()->setBold(true);
-        $sheets->getStyle('1')->getFont()->setItalic(true);
-        $sheets->getStyle('1')->getFont()->setSize("16");
-        $sheets->getStyle('1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLUE);
-        $sheets->getStyle('1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF0000');
+                    'borders' => [
+                       
+                        'outline' => [
+                       
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                            'color' => ['argb' => 'FFFF0000'],
+                       
+                        ]
+                    
+                    ]
+                    
+                ]);
+
+            },
+
+        ];
+
     }
+    
 }
