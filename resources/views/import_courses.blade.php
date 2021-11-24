@@ -4,9 +4,9 @@
 
 <div class="row">
 
-    <div class="col-md-12 mt-3">
+    <div class="col col-md-12 mt-3 bg-light">
 
-        <h4>Add Departments</h4>
+        <h4>Upload Course Spreadsheet</h4>
 
     </div>
 
@@ -38,29 +38,18 @@
 
     @endif
 
-    <div class="col-md-12">
+    <div class="col col-md-12 mt-5">
 
-        <form method="POST" action="{{route('add.dept.submit')}}">
-
+        <form action="{{ route('submit.import.course') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class="form-group mt-4">
-                <label class="form-label">Department Name:</label>
-                <input type="text" name="dept_name" class="form-control" >
-            </div>
-
-            <div class="form-group mt-3">
-                
-                <input type="submit" value="Add" class="btn btn-primary">
-
-            </div>
+            <input type="file" name="course_file">
+            <button type="submit" class="btn btn-sm btn-success">Import</button>
 
         </form>
 
     </div>
 
 </div>
-
-<p style="padding-top: 15px">Click <a href="{{ route('view.import.department') }}">HERE</a> to Upload Department Spreadsheet</p>
 
 @endsection

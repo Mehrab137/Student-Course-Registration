@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ImportController;
 
 
 Route::get('/', function () {
@@ -77,3 +78,9 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 });
 
     Route::get('view-students/excel', 'App\Http\Controllers\ExportController@exportStudent')->name('export.student.excel');
+
+    Route::get('add-department/excel', 'App\Http\Controllers\ImportController@importDepartmentView')->name('view.import.department');
+    Route::post('add-department/excel', 'App\Http\Controllers\ImportController@importDepartmentSubmit')->name('submit.import.department');
+
+    Route::get('add-course/excel', 'App\Http\Controllers\ImportController@importCourseView')->name('view.import.course');
+    Route::post('add-course/excel', 'App\Http\Controllers\ImportController@importCourseSubmit')->name('submit.import.course');

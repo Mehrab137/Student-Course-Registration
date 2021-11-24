@@ -10,6 +10,7 @@ class Course extends Model
     use HasFactory;
     
     public $table = "courses";
+    protected $fillable = ['course_name', 'course_credit'];
 
     public function department()
     {

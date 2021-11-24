@@ -11,6 +11,8 @@ class Department extends Model
 
     public $table = "departments";
 
+    protected $fillable = ['dept_name'];
+
     public function courses()
     {
         return $this->hasMany('App\Models\Course');
