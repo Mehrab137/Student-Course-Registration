@@ -77,6 +77,7 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
 });
 
+    Route::get('view-sections/excel','App\Http\Controllers\ExportController@exportSection')->name('export.section.excel');
     Route::get('view-students/excel', 'App\Http\Controllers\ExportController@exportStudent')->name('export.student.excel');
 
     Route::get('add-department/excel', 'App\Http\Controllers\ImportController@importDepartmentView')->name('view.import.department');

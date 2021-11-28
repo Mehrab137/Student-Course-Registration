@@ -26,7 +26,9 @@
 
     <div class="col-md-12 mt-2">
 
-        <div class="table-responsive">
+        <a href="{{ route('export.student.excel') }}" class="btn btn-sm btn-success">Export as Spreadsheet</a>
+
+        <div class="table-responsive mt-3">
 
              <table class="table table-bordered table-striped">
 
@@ -78,7 +80,5 @@
         </div>
 
     </div>
-   
-    <button href="{{ route('export.student.excel') }}" class="btn btn-sm btn-success" type="button" style="position: fixed; bottom:5px;right:5px;">Export as Spreadsheet</button>
 
 @endsection

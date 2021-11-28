@@ -24,9 +24,11 @@
 
     @endif
 
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12 mt-2">
 
-        <div class="table-responsive">
+        <a href="{{ route('export.section.excel') }}" class="btn btn-sm btn-success">Export as Spreadsheet</a>
+
+        <div class="table-responsive mt-3">
 
             <table class="table table-bordered table-striped">
     
@@ -86,5 +88,5 @@
     </div>
 
 </div>
-                    
- @endsection
+
+@endsection
