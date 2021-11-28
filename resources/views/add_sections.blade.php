@@ -5,7 +5,7 @@
 
 <div class="row">
 
-    <div class="col-md-12 mt-2">
+    <div class="col-md-12 mt-2" style="padding-left: 17%">
 
         <h4>Add Sections</h4>
 
@@ -39,13 +39,13 @@
 
     @endif
 
-    <div class="col-md-12">
+    <div class="col-md-8 mt-2 shadow-sm p-3 mb-5 bg-body rounded" style="margin: 0 auto;">
 
         <form method="POST" action="{{ route('add.section.submit') }}">
 
             @csrf
 
-            <div class="form-group mt-2">
+            <div class="form-group">
                 <label class="form-label">Section Name:</label>
                 <input type="text" name="section_name" class="form-control"  value="{{ old('section_name') }}">
             </div>
@@ -62,7 +62,7 @@
 
             <div class="form-group mt-2">
                 <label class="form-label">Days:</label>
-                <input type="text" name="days" class="form-control" value="{{ old('days') }}">
+                <input type="text" name="days" class="form-control" placeholder="e.g. Sunday,Thursday" value="{{ old('days') }}">
             </div>
 
             <div class="form-group mt-2">
@@ -90,7 +90,7 @@
 
             <div class="form-group mt-3">
                 
-                <input type="submit" value="Add" class="btn btn-primary">
+                <input type="submit" value="Add" class="btn btn-primary bg-dark text-white">
 
             </div>
 

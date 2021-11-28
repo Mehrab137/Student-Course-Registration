@@ -38,13 +38,13 @@
 
     @endif
 
-    <div class="col-md-8 shadow p-3 mb-5 bg-body rounded" style="margin: 0 auto;">
+    <div class="col-md-8 mt-2 shadow-sm p-3 mb-5 bg-body rounded" style="margin: 0 auto;">
 
         <form method="POST" action="{{ route('add.course.submit') }}">
 
             @csrf
 
-            <div class="form-group mt-3">
+            <div class="form-group">
                 <label class="form-label">Course Name:</label>
                 <input type="text" name="course_name" class="form-control" value="{{ old('course_name') }}" >
             </div>
@@ -72,7 +72,7 @@
 
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-4">
                 
                 <input type="submit" value="Add" class="btn bg-dark text-white">
 

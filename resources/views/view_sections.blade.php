@@ -28,7 +28,7 @@
 
         <a href="{{ route('export.section.excel') }}" class="btn btn-sm btn-success">Export as Spreadsheet</a>
 
-        <div class="table-responsive mt-3">
+        <div class="table-responsive mt-3 shadow p-3 mb-5 bg-body rounded">
 
             <table class="table table-bordered table-striped">
     

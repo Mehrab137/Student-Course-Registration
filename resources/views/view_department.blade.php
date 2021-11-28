@@ -26,7 +26,7 @@
 
     <div class="col-md-12 mt-3">
 
-        <div class="table-responsive">
+        <div class="table-responsive shadow p-3 mb-5 bg-body rounded">
 
             <table class="table table-bordered table-striped">
     

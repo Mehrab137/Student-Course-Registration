@@ -5,7 +5,7 @@
 
 <div class="row">
 
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12 mt-3" style="padding-left: 17%">
 
         <h4>Add Students</h4>
 
@@ -39,7 +39,7 @@
 
     @endif
 
-    <div class="col-md-12">
+    <div class="col-md-8 shadow-sm p-3 mb-5 bg-body rounded" style="margin:0 auto">
 
         <form method="POST" action="{{ route('add.student.submit') }}">
 
@@ -90,7 +90,7 @@
 
             <div class="form-group mt-3">
                 
-                <input type="submit" value="Add" class="btn btn-primary">
+                <input type="submit" value="Add" class="btn btn-primary bg-dark text-white">
 
             </div>
 
