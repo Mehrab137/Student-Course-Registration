@@ -6,8 +6,12 @@ use App\Http\Controllers\ImportController;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'], function(){
 
@@ -85,3 +89,5 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::get('add-course/excel', 'App\Http\Controllers\ImportController@importCourseView')->name('view.import.course');
     Route::post('add-course/excel', 'App\Http\Controllers\ImportController@importCourseSubmit')->name('submit.import.course');
+
+
