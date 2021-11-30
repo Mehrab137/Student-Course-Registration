@@ -6,7 +6,7 @@ use App\Http\Controllers\ImportController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front_page');
 });
 
 Auth::routes();

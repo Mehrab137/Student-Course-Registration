@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-          <a class="navbar-brand" href="/">SRP</a>
+          <a class="navbar-brand" href="{{ url('/home') }}">SRP</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -74,10 +74,13 @@
                         </ul>
                 </li>
             </ul>
-            {{-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> --}}
+              {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button> --}}
+            <form action="{{ route('logout') }}" method="POST" class="d-flex">
+                @csrf
+                <button type="submit" class=" btn btn-sm bg-dark text-light">Logout</button>
+            </form>
+
           </div>
 
         </div>
