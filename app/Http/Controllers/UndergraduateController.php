@@ -243,7 +243,7 @@ class UndergraduateController extends Controller
 
             'program_id' => 'required',
 
-            'student_profile_picture' => 'mimes:jpg,jpeg'
+            'student_profile_picture' => 'mimes:jpg,jpeg,png'
 
         ],
     [
@@ -266,7 +266,7 @@ class UndergraduateController extends Controller
 
         'program_id.required' => 'Selecting Undergraduate Program is required',
 
-        'student_profile_picture.mimes' => 'Image file type must be jpg/jpeg'
+        'student_profile_picture.mimes' => 'Image file type must be jpg/jpeg/png'
 
     ]);
  
@@ -522,6 +522,15 @@ class UndergraduateController extends Controller
         $student->address = $request->address;
 
         $student->date_of_birth = $request->date_of_birth;
+
+        if($request->file('student_profile_picture')){
+
+            $student_profile_picture_name = time().'.'.$request->file('student_profile_picture')->getClientOriginalExtension();  
+
+            $student_profile_picture_path = $request->student_profile_picture->storeAs('public/images', $student_profile_picture_name);
+
+            $student->student_profile_picture = $student_profile_picture_path;
+        }
 
         $student->program_id = $request->program_id;
 

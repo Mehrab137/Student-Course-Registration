@@ -29,7 +29,7 @@
 
     <div class="col-md-12">
 
-        <form method="POST" action="{{ route('edit.student.submit', $student->id) }}">
+        <form method="POST" action="{{ route('edit.student.submit', $student->id) }}" enctype="multipart/form-data">
 
             @csrf
 
@@ -61,6 +61,11 @@
             <div class="form-group mt-3">
                 <label class="form-label">Date of Birth:</label>
                 <input type="date" name="date_of_birth" value="{{ $student->date_of_birth }}" class="form-control" >
+            </div>
+
+            <div class="form-group mt-2">
+                <label class="form-label">Profile Picture</label>
+                <input type="file" name="student_profile_picture" class="form-control" value="{{ $student->student_profile_picture }}"> 
             </div>
 
             <div class="form-group mt-3">
