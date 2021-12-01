@@ -16,7 +16,7 @@ class UndergraduateController extends Controller
    
     public function addUndergradView()
     {
-        return view('add_undergradprograms');
+        return view('add.add_undergradprograms');
     }
 
     public function addUndergradSubmit(Request $request)
@@ -62,7 +62,7 @@ class UndergraduateController extends Controller
 
     public function addDepartmentView()
     {
-        return view('add_departments');
+        return view('add.add_departments');
     }
     
     public function addDepartmentSubmit(Request $request)
@@ -100,7 +100,7 @@ class UndergraduateController extends Controller
     {
         $departments = Department::all();
 
-        return view('add_courses', compact('departments'));
+        return view('add.add_courses', compact('departments'));
     }
 
     public function addCourseSubmit(Request $request)
@@ -148,7 +148,7 @@ class UndergraduateController extends Controller
     public function addSectionView()
     {
         $courses = Course::all();
-        return view('add_sections' , compact('courses'));    
+        return view('add.add_sections' , compact('courses'));    
     }
 
     public function addSectionSubmit(Request $request)
@@ -223,7 +223,7 @@ class UndergraduateController extends Controller
     {
         $programs = Undergraduateprogram::all();
 
-        return view('add_students' , compact('programs'));
+        return view('add.add_students' , compact('programs'));
     }
     
     public function addStudentSubmit(Request $request)
@@ -319,7 +319,7 @@ class UndergraduateController extends Controller
 
         $undergraduateprograms = Undergraduateprogram::select(['id','UP_name','total_credits'])->get();
         
-        return view('view_undergraduate_programs',['undergraduateprograms' => $undergraduateprograms]);
+        return view('view.view_undergraduate_programs',['undergraduateprograms' => $undergraduateprograms]);
 
     }
 
@@ -328,7 +328,7 @@ class UndergraduateController extends Controller
 
         $departments = Department::select(['id','dept_name'])->get();
 
-        return view('view_department', ['departments' => $departments]);
+        return view('view.view_department', ['departments' => $departments]);
 
     }
 
@@ -337,7 +337,7 @@ class UndergraduateController extends Controller
 
         $courses = Course::with(['department'])->get();
 
-        return view('view_courses', ['courses' => $courses]);
+        return view('view.view_courses', ['courses' => $courses]);
 
     }
 
@@ -346,7 +346,7 @@ class UndergraduateController extends Controller
 
         $sections = Section::with(['course'])->get();
 
-        return view('view_sections', ['sections' => $sections]);
+        return view('view.view_sections', ['sections' => $sections]);
 
     }
 
@@ -355,7 +355,7 @@ class UndergraduateController extends Controller
 
         $students = Student::with(['undergraduateProgram'])->get();
 
-        return view('view_students', ['students' => $students]);
+        return view('view.view_students', ['students' => $students]);
 
     }
 
@@ -364,7 +364,7 @@ class UndergraduateController extends Controller
 
         $undergrad = Undergraduateprogram::find($undergrad_id);
 
-        return view('edit_undergraduate_programs',compact('undergrad'));
+        return view('edit.edit_undergraduate_programs',compact('undergrad'));
 
     }
 
@@ -393,7 +393,7 @@ class UndergraduateController extends Controller
     {
         $department = Department::find($department_id);
 
-        return view('edit_department', compact('department'));
+        return view('edit.edit_department', compact('department'));
     }
 
     public function editDepartmentSubmit(Request $request, $department_id)
@@ -422,7 +422,7 @@ class UndergraduateController extends Controller
 
         $departments = Department::all();
 
-        return view('edit_courses', compact('course', 'departments'));
+        return view('edit.edit_courses', compact('course', 'departments'));
 
     }
 
@@ -458,7 +458,7 @@ class UndergraduateController extends Controller
 
         $courses = Course::all();
 
-        return view('edit_sections', compact('section', 'courses'));
+        return view('edit.edit_sections', compact('section', 'courses'));
 
     }
 
@@ -500,7 +500,7 @@ class UndergraduateController extends Controller
 
         $programs = Undergraduateprogram::all();
 
-        return view('edit_students', compact('student', 'programs'));
+        return view('edit.edit_students', compact('student', 'programs'));
 
     }
 

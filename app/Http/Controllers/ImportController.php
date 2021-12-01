@@ -12,7 +12,7 @@ class ImportController extends Controller
     public function importDepartmentView()
     {
 
-        return view('import_departments');
+        return view('import.import_departments');
 
     }
 
@@ -46,7 +46,7 @@ class ImportController extends Controller
     public function importCourseView()
     {
 
-        return view('import_courses');
+        return view('import.import_courses');
 
     }
 
