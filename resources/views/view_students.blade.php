@@ -41,6 +41,7 @@
                         <th>Contact Number</th>
                         <th>Date of Birth</th>
                         <th>Undergraduate Program</th>
+                        <th>Picture</th>
                         <th style="width: 12%;">Action</th>
 
                   </tr>
@@ -49,27 +50,30 @@
                 
                   <tr>
 
-                     <td>{{ $loop->iteration }}</td>
-                     <td>{{ $student->student_id }}</td>
-                     <td>{{ $student->student_name }}</td>
-                     <td>{{ $student->email_id }}</td>
-                     <td>{{ $student->contact_number }}</td>
-                     <td>{{ date_format(date_create($student->date_of_birth), "d/M/Y") }}</td>
-                     <td>{{ $student->undergraduateProgram->UP_name }}</td>
-                     <td><a href="{{ route('edit.student.view', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                         
-                         <form action="{{ route('delete.student') }}" method="POST" style="display: inline">
-                            @csrf
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $student->student_id }}</td>
+                        <td>{{ $student->student_name }}</td>
+                        <td>{{ $student->email_id }}</td>
+                        <td>{{ $student->contact_number }}</td>
+                        <td>{{ date_format(date_create($student->date_of_birth), "d/M/Y") }}</td>
+                        <td>{{ $student->undergraduateProgram->UP_name }}</td>
+                        <td>
+                            <img style="object-fit: cover; width:100px; height:100px" src="{{ env("APP_URL") . Storage::url($student->student_profile_picture) }}">
+                        </td>
+                        <td><a href="{{ route('edit.student.view', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            
+                            <form action="{{ route('delete.student') }}" method="POST" style="display: inline">
+                                @csrf
 
-                            <input type="hidden" name="student_id" value="{{ $student->id }}">
+                                <input type="hidden" name="student_id" value="{{ $student->id }}">
 
-                            <button class="btn btn-sm btn-danger">Delete</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
 
-                        </form>
+                            </form>
 
-                     </td>
+                        </td>
 
-                  </tr>
+                    </tr>
 
                   @endforeach
 

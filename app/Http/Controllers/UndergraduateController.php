@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Course;
 use App\Models\Section;
 use App\Models\Student;
+use Storage;
 
 
 class UndergraduateController extends Controller
@@ -240,7 +241,9 @@ class UndergraduateController extends Controller
 
             'date_of_birth' => 'required',
 
-            'program_id' => 'required'
+            'program_id' => 'required',
+
+            'student_profile_picture' => 'mimes:jpg,jpeg'
 
         ],
     [
@@ -261,10 +264,12 @@ class UndergraduateController extends Controller
 
         'date_of_birth.required' => 'Date of Birth field is required',
 
-        'program_id.required' => 'Selecting Undergraduate Program is required'
+        'program_id.required' => 'Selecting Undergraduate Program is required',
+
+        'student_profile_picture.mimes' => 'Image file type must be jpg/jpeg'
 
     ]);
-
+ 
         $student = new Student();
 
         $student->student_id = date('y') . date('d');
@@ -279,6 +284,16 @@ class UndergraduateController extends Controller
 
         $student->date_of_birth = $request->date_of_birth;
 
+        if($request->file('student_profile_picture')){
+
+            $student_profile_picture_name = time().'.'.$request->file('student_profile_picture')->getClientOriginalExtension();  
+
+            $student_profile_picture_path = $request->student_profile_picture->storeAs('public/images', $student_profile_picture_name);
+
+            $student->student_profile_picture = $student_profile_picture_path;
+        }
+
+
         $student->program_id = $request->program_id;
 
         $student->save();
@@ -287,7 +302,7 @@ class UndergraduateController extends Controller
 
         // $student->student_id = $student->student_id . $student->id;
 
-        $student->save();
+        $student->save(); 
 
         $alert = [
 

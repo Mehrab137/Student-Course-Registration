@@ -12,7 +12,7 @@
     </div>
     
     @if ($errors->any())
-        <div class="col-md-12">
+        <div class="col-md-10" style="padding-left: 17%">
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -25,7 +25,7 @@
 
     @if(Session::has('alert_msg'))
 
-        <div class="col-md-12">
+        <div class="col-md-10" style="padding-left: 17%">
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
 
@@ -41,7 +41,7 @@
 
     <div class="col-md-8 shadow-sm p-3 mb-5 bg-body rounded" style="margin:0 auto">
 
-        <form method="POST" action="{{ route('add.student.submit') }}">
+        <form method="POST" action="{{ route('add.student.submit') }}" enctype="multipart/form-data">
 
             @csrf
 
@@ -68,6 +68,11 @@
             <div class="form-group mt-2">
                 <label class="form-label">Date of Birth:</label>
                 <input type="date" name="date_of_birth" class="form-control" value="{{ old('date_of_birth') }}">
+            </div>
+
+            <div class="form-group mt-2">
+                <label class="form-label">Profile Picture</label>
+                <input type="file" name="student_profile_picture" class="form-control" value="{{ old('student_profile_picture') }}" alt="pro_pic"> 
             </div>
 
             <div class="form-group mt-2">
