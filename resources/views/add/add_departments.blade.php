@@ -11,7 +11,7 @@
     </div>
 
     @if ($errors->any())
-        <div class="col-md-12 mt-2">
+        <div class="col-md-10" style="padding-left: 17%">
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -24,7 +24,7 @@
 
     @if(Session::has('alert_msg'))
 
-        <div class="col-md-12">
+        <div class="col-md-10" style="padding-left: 17%">
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
 

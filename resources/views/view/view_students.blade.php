@@ -30,23 +30,27 @@
 
         <div class="table-responsive mt-3 shadow p-3 mb-5 bg-body rounded">
 
-             <table class="table table-bordered table-striped">
+             <table id="student_table" class="table table-bordered table-striped">
 
-                <tr>
+                <thead>
 
-                    <th>#</th>
-                    <th>Student Picture</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Email</th>
-                    <th>Contact Number</th>
-                    <th>Date of Birth</th>
-                    <th>Undergraduate Program</th>
-                    <th style="width: 12%;">Action</th>
+                    <tr>
 
-                </tr>
+                        <th>#</th>
+                        <th>Student Picture</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Date of Birth</th>
+                        <th>Undergraduate Program</th>
+                        <th style="width: 16%">Action</th>
+    
+                    </tr>
 
-                  @foreach ($students as $student)
+                </thead>
+
+                  {{-- @foreach ($students as $student)
                 
                 <tr>
 
@@ -75,7 +79,11 @@
 
                 </tr>
 
-                  @endforeach
+                  @endforeach --}}
+
+                  <tbody>
+
+                  </tbody>
 
                 </table>
             
@@ -86,3 +94,39 @@
     </div>
 
 @endsection
+
+@push('js')
+
+<script>
+
+    $(document).ready( function () {
+
+    $('#student_table').DataTable({
+
+    processing: true,
+    serverside: true,
+
+    ajax: "{{ route('view.student.list') }}",
+
+    columns: [
+
+        { data: 'DT_RowIndex' , name: 'DT_RowIndex' },
+        { data: 'student_profile_picture' , name: 'student_profile_picture' },
+        { data: 'student_id' , name: 'student_id' },
+        { data: 'student_name' , name: 'student_name'},
+        { data: 'email_id' , name: 'email_id'},
+        { data: 'contact_number' , name: 'contact_number'},
+        { data: 'date_of_birth' , name: 'date_of_birth'},
+        { data: 'program_name' , name: 'program_name'},
+        { data: 'action' , name: 'action'},
+                
+        ]
+
+        });
+
+    });
+
+
+</script>
+    
+@endpush

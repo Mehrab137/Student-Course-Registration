@@ -28,17 +28,23 @@
 
         <div class="table-responsive shadow p-3 mb-5 bg-body rounded">
 
-            <table class="table table-bordered table-striped">
-    
-                <tr>
-    
-                    <th>#</th>
-                    <th>Department Name</th>
-                    <th>Action</th>
-    
-                </tr>
+            <table id="department_table" class="table table-bordered table-striped">
+                
+                <thead>
 
-                @foreach ($departments as $department)
+                    <tr>
+    
+                        <th>#</th>
+                        <th>Department Name</th>
+                        <th>Action</th>
+        
+                    </tr>
+
+                </thead>
+
+                
+
+                {{-- @foreach ($departments as $department)
 
                 <tr>
 
@@ -59,7 +65,10 @@
 
                 </tr>
 
-                @endforeach
+                @endforeach --}}
+                <tbody>
+
+                </tbody>
 
             </table>
     
@@ -70,3 +79,31 @@
 </div>
 
 @endsection
+
+@push('js')
+
+<script>
+
+$(document).ready( function () {
+
+$('#department_table').DataTable({
+   
+   processing: true,
+   serverside: true,
+   
+   ajax: "{{ route('view.department.list') }}",
+
+   columns: [
+
+    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+    { data: 'dept_name' , name: 'dept_name' },
+    { data:'action' , name: 'action'},
+            
+   ]
+});
+});
+
+
+</script>
+    
+@endpush

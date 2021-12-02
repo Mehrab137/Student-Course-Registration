@@ -19,7 +19,7 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('submit-programs', 'UndergraduateController@addUndergradSubmit')->name('add.undergrad.submit');
 
-    Route::get('view-programs', 'UndergraduateController@viewUndergradList')->name('view.undergrad.list');
+    Route::get('/view-programs', 'UndergraduateController@viewUndergradList')->name('view.undergrad.list');
 
     Route::get('edit-programs/{undergrad_id}', 'UndergraduateController@editUndergradView')->name('edit.undergrad.view');
 

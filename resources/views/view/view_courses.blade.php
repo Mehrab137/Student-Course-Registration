@@ -28,25 +28,30 @@
 
         <div class="table-responsive shadow p-3 mb-5 bg-body rounded">
 
-            <table class="table table-bordered table-striped">
+            <table id="course_table" class="table table-bordered table-striped">
     
-                <tr>
+                <thead>
+
+                    <tr>
     
-                    <th>#</th>
-                    <th>Course Name</th>
-                    <th>Course Credit</th>
-                    <th>Department Name</th>
-                    <th>Action</th>
+                        <th>#</th>
+                        <th>Course Name</th>
+                        <th>Course Credit</th>
+                        <th>Department Name</th>
+                        <th>Action</th>
+        
+                    </tr>
+
+                </thead>
+                
     
-                </tr>
-    
-                @foreach ($courses as $course)
+                {{-- @foreach ($courses as $course)
                     
-                    {{-- MANUAL WAY
+                    MANUAL WAY
 
                     @php
                         $department = App\Models\Department::find($course->department_id);
-                    @endphp --}}
+                    @endphp
 
                     <tr>
     
@@ -67,12 +72,16 @@
 
                         </td>
 
-                        {{-- MANUAL WAY
-                        <td>{{ $department->dept_name }}</td> --}}
+                        MANUAL WAY
+                        <td>{{ $department->dept_name }}</td>
                         
                     </tr>
     
-                @endforeach
+                @endforeach --}}
+
+                <tbody>
+
+                </tbody>
     
             </table>
     
@@ -83,3 +92,34 @@
 </div>
 
 @endsection
+
+@push('js')
+    
+    <script>
+
+        $(document).ready( function () {
+
+        $('#course_table').DataTable({
+        
+        processing: true,
+        serverside: true,
+        
+        ajax: "{{ route('view.course.list') }}",
+
+        columns: [
+
+            { data: 'DT_RowIndex' , name: 'DT_RowIndex' },
+            { data: 'course_name' , name: 'course_name' },
+            { data: 'course_credit' , name: 'course_credit' },
+            { data: 'department.dept_name' , name: 'department.dept_name'},
+            { data: 'action' , name: 'action'},
+                    
+            ]
+
+         });
+
+        });
+
+    </script>
+
+@endpush

@@ -30,22 +30,26 @@
 
         <div class="table-responsive mt-3 shadow p-3 mb-5 bg-body rounded">
 
-            <table class="table table-bordered table-striped">
+            <table id="section_table" class="table table-bordered table-striped">
     
-                <tr>
-    
-                    <th>#</th>
-                    <th>Section Name</th>
-                    <th>Starting Time</th>
-                    <th>Ending Time</th>
-                    <th>Days</th>
-                    <th>Total Seats</th>
-                    <th>Course Name</th>
-                    <th>Action</th>
-    
-                </tr>
+                <thead>
 
-                @foreach ($sections as $section)
+                    <tr>
+    
+                        <th>#</th>
+                        <th>Section Name</th>
+                        <th>Starting Time</th>
+                        <th>Ending Time</th>
+                        <th>Days</th>
+                        <th>Total Seats</th>
+                        <th>Course Name</th>
+                        <th>Action</th>
+        
+                    </tr>
+
+                </thead>
+
+                {{-- @foreach ($sections as $section)
 
                 <tr>
 
@@ -79,7 +83,11 @@
 
                 </tr>
 
-                @endforeach
+                @endforeach --}}
+
+                <tbody>
+
+                </tbody>
 
             </table>
     
@@ -90,3 +98,37 @@
 </div>
 
 @endsection
+
+@push('js')
+    
+    <script>
+
+        $(document).ready( function () {
+
+        $('#section_table').DataTable({
+
+        processing: true,
+        serverside: true,
+
+        ajax: "{{ route('view.section.list') }}",
+
+        columns: [
+
+            { data: 'DT_RowIndex' , name: 'DT_RowIndex' },
+            { data: 'section_name' , name: 'section_name' },
+            { data: 'start_time' , name: 'start_time' },
+            { data: 'end_time' , name: 'end_time'},
+            { data: 'days' , name: 'days'},
+            { data: 'total_seats' , name: 'total_seats'},
+            { data: 'course.course_name' , name: 'course.course_name'},
+            { data: 'action' , name: 'action'},
+                    
+            ]
+
+        });
+
+        });
+
+    </script>
+
+@endpush

@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Section;
 use App\Models\Student;
 use Storage;
+use Yajra\Datatables\Datatables;
 
 
 class UndergraduateController extends Controller
@@ -314,48 +315,238 @@ class UndergraduateController extends Controller
 
     }
 
-    public function viewUndergradList()
+    public function viewUndergradList(Request $request)
     {
 
-        $undergraduateprograms = Undergraduateprogram::select(['id','UP_name','total_credits'])->get();
+        // $undergraduateprograms = Undergraduateprogram::select(['id','UP_name','total_credits'])->get();
         
-        return view('view.view_undergraduate_programs',['undergraduateprograms' => $undergraduateprograms]);
+        // return view('view.view_undergraduate_programs',['undergraduateprograms' => $undergraduateprograms]);
+       
+        if ($request->ajax()){
+
+            $undergraduateprograms = Undergraduateprogram::select(['id','UP_name','total_credits'])->get();
+
+            return Datatables::of($undergraduateprograms)
+
+                            ->addIndexColumn() 
+
+                            ->addColumn('action', function($row) {
+
+                               return  '<a href="' . route('edit.undergrad.view', $row->id) . '" class="btn btn-sm btn-warning">Edit</a>
+                               
+                               <form action="' . route('delete.undergrad') .'" method="POST" style="display:inline">
+
+                               ' . csrf_field() . '
+
+                               <input type="hidden" name="undergrad_id" value="' . $row->id .'">
+   
+                               <button class="btn btn-sm btn-danger">Delete</button>
+   
+                           </form>';
+                               
+                            })    
+                            
+                            ->rawColumns(['action'])   
+
+                            ->make(true);
+
+        }
+
+        return view('view.view_undergraduate_programs');
 
     }
 
-    public function viewDepartmentList()
+    public function viewDepartmentList(Request $request)
     {
 
-        $departments = Department::select(['id','dept_name'])->get();
+        // $departments = Department::select(['id','dept_name'])->get();
 
-        return view('view.view_department', ['departments' => $departments]);
+        // return view('view.view_department', ['departments' => $departments]);
+      
+        if ($request->ajax()){
+
+            $departments= Department::select(['id','dept_name'])->get();
+
+            return Datatables::of($departments)
+
+                            ->addIndexColumn() 
+
+                            ->addColumn('action', function($row) {
+
+                               return  '<a href="' . route('edit.department.view', $row->id) . '" class="btn btn-sm btn-warning">Edit</a>
+                               
+                               <form action="' . route('delete.department') .'" method="POST" style="display:inline">
+
+                               ' . csrf_field() . '
+
+                               <input type="hidden" name="department_id" value="' . $row->id .'">
+   
+                               <button class="btn btn-sm btn-danger">Delete</button>
+   
+                           </form>';
+                               
+                            })    
+
+                            ->rawColumns(['action'])   
+
+                            ->make(true);
+
+        }
+
+        return view('view.view_department');
 
     }
 
-    public function viewCourseList()
+    public function viewCourseList(Request $request)
     {
 
-        $courses = Course::with(['department'])->get();
+        // $courses = Course::with(['department'])->get();
 
-        return view('view.view_courses', ['courses' => $courses]);
+        // return view('view.view_courses', ['courses' => $courses]);
+
+        if ($request->ajax()){
+
+            $courses = Course::with(['department'])->get();
+
+            return Datatables::of($courses)
+
+                            ->addIndexColumn() 
+
+                            ->addColumn('action', function($row) {
+
+                            return  '<a href="' . route('edit.course.view', $row->id) . '" class="btn btn-sm btn-warning">Edit</a>
+                            
+                            <form action="' . route('delete.course') .'" method="POST" style="display:inline">
+
+                            ' . csrf_field() . '
+
+                            <input type="hidden" name="course_id" value="' . $row->id .'">
+
+                            <button class="btn btn-sm btn-danger">Delete</button>
+
+                            </form>';
+                            
+                            })    
+
+                            ->rawColumns(['action'])   
+
+                            ->make(true);
+
+        }
+
+            return view('view.view_courses');
 
     }
 
-    public function viewSectionList()
+    public function viewSectionList(Request $request)
     {
 
-        $sections = Section::with(['course'])->get();
+        // $sections = Section::with(['course'])->get();
 
-        return view('view.view_sections', ['sections' => $sections]);
+        // return view('view.view_sections', ['sections' => $sections]);
+
+        if ($request->ajax()){
+
+            $sections = Section::with(['course'])->get();
+
+            return Datatables::of($sections)
+            
+                            ->addIndexColumn()
+
+                            ->addColumn('action', function($row){
+
+                            return  '<a href="' . route('edit.section.view', $row->id) . '" class="btn btn-sm btn-warning text-white">Edit</a>
+                            
+                            <form action="' . route('delete.section') .'" method="POST" style="display:inline">
+
+                            ' . csrf_field() . '
+
+                            <input type="hidden" name="section_id" value="' . $row->id .'">
+
+                            <button class="btn btn-sm btn-danger">Delete</button>
+
+                            </form>';
+
+                            })
+
+                            ->addColumn('start_time', function($row){
+
+                                return  date_format(date_create($row->start_time), "h:i A");
+
+                            })
+
+                            ->addColumn('end_time', function($row){
+
+                                return  date_format(date_create($row->end_time), "h:i A");
+
+                            })
+
+                            ->rawColumns(['action'])
+
+                            ->make(true);
+            
+        }
+
+        return view('view.view_sections');
 
     }
 
-    public function viewStudentList()
+    public function viewStudentList(Request $request)
     {
 
-        $students = Student::with(['undergraduateProgram'])->get();
+        // $students = Student::with(['undergraduateProgram'])->get();
 
-        return view('view.view_students', ['students' => $students]);
+        // return view('view.view_students', ['students' => $students]);
+
+        if ($request->ajax()){
+
+            $students = Student::with(['undergraduateProgram'])->get();
+
+            return Datatables::of($students)
+
+                            ->addIndexColumn()
+                                
+                            ->addColumn('action', function($row){
+
+                                return  '<a href="' . route('edit.student.view', $row->id) . '" class="btn btn-sm btn-warning text-white">Edit</a>
+                                
+                                <form action="' . route('delete.student') .'" method="POST" style="display:inline">
+
+                                ' . csrf_field() . '
+
+                                <input type="hidden" name="student_id" value="' . $row->id .'">
+
+                                <button class="btn btn-sm btn-danger">Delete</button>
+
+                                </form>';
+
+                                })
+
+                                ->addColumn('student_profile_picture', function($row){
+
+                                    return '<img style="object-fit: cover; width:100px; height:100px" src="' . env("APP_URL") . Storage::url($row->student_profile_picture) . '">';
+
+                                })
+
+                                ->addColumn('date_of_birth', function($row){
+
+                                    return  date_format(date_create($row->date_of_birth), "d/M/Y");
+
+                                })
+
+                                ->addColumn('program_name', function($row){
+
+                                    return $row->undergraduateProgram->UP_name;
+
+                                })
+
+                            ->rawColumns(['action','student_profile_picture','date_of_birth','program_id'])
+
+                            ->make(true);
+
+        }
+
+        return view('view.view_students');
 
     }
 

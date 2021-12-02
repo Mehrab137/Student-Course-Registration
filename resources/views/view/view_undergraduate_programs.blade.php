@@ -8,38 +8,27 @@
         <h4>Undergraduate Programs List</h4>
     </div>
 
-    @if(Session::has('alert_msg'))
-
-        <div class="col-md-12">
-
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-
-                {{ Session::get('alert_msg') }}
-
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-            </div>
-
-        </div>
-
-    @endif
-
     <div class="col-md-12 mt-3">
 
         <div class="table-responsive shadow p-3 mb-5 bg-body rounded">
 
-            <table class="table table-bordered table-striped">
-    
-                <tr>
-    
-                    <th>#</th>
-                    <th>Course Name</th>
-                    <th>Course Credit</th>
-                    <th>Action</th>
-    
-                </tr>
+            <table id="undergraduate_program_table" class="table table-bordered table-hover table-striped">
+                
+                <thead>
 
-                @foreach ($undergraduateprograms as $undergraduateprogram)
+                    <tr>
+    
+                        <th>#</th>
+                        <th>Undergraduate Program</th>
+                        <th>Total Credit</th>
+                        <th>Action</th>
+        
+                    </tr>
+
+                </thead>
+                
+
+                {{-- @foreach ($undergraduateprograms as $undergraduateprogram)
 
                 <tr>
 
@@ -62,7 +51,10 @@
 
                 </tr>
 
-                @endforeach
+                @endforeach --}}
+                <tbody>
+
+                </tbody>
 
             </table>
     
@@ -73,3 +65,31 @@
 </div>
                     
  @endsection
+
+ @push('js')
+
+ <script>
+
+    $(document).ready( function () {
+
+        $('#undergraduate_program_table').DataTable({
+           
+           processing: true,
+           serverside: true,
+           
+           ajax: "{{ route('view.undergrad.list') }}",
+
+           columns: [
+
+            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+            { data: 'UP_name' , name: 'UP_name' },
+            { data: 'total_credits' , name: 'total_credits' },
+            { data:'action' , name: 'action'},
+                    
+           ]
+        });
+    });
+
+ </script>
+     
+ @endpush
