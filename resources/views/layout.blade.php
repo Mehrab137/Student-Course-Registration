@@ -74,6 +74,26 @@
                              <li><a class="dropdown-item" href="{{ route('view.student.list') }}">View</a></li>
                         </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Faculty
+                    </a>
+                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('add.faculty.view') }}">Add</a></li>
+                            <li><a class="dropdown-item" href="">View</a></li>
+                       </ul>
+               </li>
+
+               <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Assign
+                </a>
+                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('assign.faculty.view') }}">Faculty</a></li>
+                        <li><a class="dropdown-item" href="">Student</a></li>
+                   </ul>
+           </li>
             </ul>
               {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button> --}}

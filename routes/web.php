@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\AssignmentController;
 
 
 Route::get('/', function () {
@@ -12,6 +13,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'], function(){
 
@@ -79,6 +81,11 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     
     Route::post('delete-student', 'UndergraduateController@deleteStudent')->name('delete.student');
 
+
+    Route::get('add-faculties', 'UndergraduateController@addFacultyView')->name('add.faculty.view');
+
+    Route::post('add-faculties','UndergraduateController@addFacultySubmit')->name('add.faculty.submit');
+
 });
 
     Route::get('view-sections/excel','App\Http\Controllers\ExportController@exportSection')->name('export.section.excel');
@@ -90,4 +97,4 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::get('add-course/excel', 'App\Http\Controllers\ImportController@importCourseView')->name('view.import.course');
     Route::post('add-course/excel', 'App\Http\Controllers\ImportController@importCourseSubmit')->name('submit.import.course');
 
-
+    Route::get('assign-faculty', 'App\Http\Controllers\AssignmentController@assignFacultyView')->name('assign.faculty.view');

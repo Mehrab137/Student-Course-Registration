@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Course;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\Faculty;
 use Storage;
 use Yajra\Datatables\Datatables;
 
@@ -312,6 +313,36 @@ class UndergraduateController extends Controller
         ];
 
         return redirect()->route('add.student.view')->with($alert);
+
+    }
+
+    public function addFacultyView()
+    {
+
+        $departments = Department::all();
+
+        return view('add.add_faculties', compact('departments'));
+
+    }
+
+    public function addFacultySubmit(Request $request)
+    {
+
+        $faculty = new Faculty();
+
+        $faculty->faculty_name = $request->faculty_name;
+
+        $faculty->email_id = $request->email_id;
+
+        $faculty->contact_number = $request->contact_number;
+
+        $faculty->address = $request->address;
+        
+        $faculty->department_id = $request->department_id;
+
+        $faculty->save();
+
+        return back();
 
     }
 
