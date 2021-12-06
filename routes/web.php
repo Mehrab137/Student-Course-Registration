@@ -98,3 +98,4 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::post('add-course/excel', 'App\Http\Controllers\ImportController@importCourseSubmit')->name('submit.import.course');
 
     Route::get('assign-faculty', 'App\Http\Controllers\AssignmentController@assignFacultyView')->name('assign.faculty.view');
+    Route::post('find-course','App\Http\Controllers\AssignmentController@assignFacultySubmit')->name('assign.faculty.submit');
