@@ -20,12 +20,44 @@ class AssignmentController extends Controller
 
     }
 
-    public function assignFacultySubmit(Request $request)
+    public function getCourse(Request $request)
     {
+    
         $courses = Course::where('department_id', '=', $request->department_id)->get(['course_name','id']);
+
+        return response()->json($courses);
+        
+    }
+
+    public function getFaculty(Request $request)
+    {
+        
         $faculty = Faculty::where('department_id', '=', $request->department_id)->get(['faculty_name','id']);
 
-        return response()->json([]);
+        return response()->json($faculty);
+
+    }
+
+    public function getSection(Request $request)
+    {
+
+        $section = Section::where('course_id', '=', $request->course_id)->get(['section_name','id']);
+
+        return response()->json($section);
+
+    }
+
+    public function  assignFacultySubmit(Request $request)
+    {
+
+        $faculty = Faculty::find($request->faculty_id);
         
+        $faculty->course_id = $request->course_id;
+        $faculty->section_id = $request->section_id;
+
+        $faculty->save();
+
+        return back();
+
     }
 }

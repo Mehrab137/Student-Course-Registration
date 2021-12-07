@@ -3,20 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
-use App\Http\Controllers\AssignmentController;
-
 
 Route::get('/', function () {
     return view('front_page');
 });
 
+    ///////AUTH LOGIN/SIGNUP
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+    ///////ADD, VIEW, EDIT, DELETE
 Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'], function(){
 
+
+    ///////UNDERGRADUATE PROGRAM
     Route::get('add-programs', 'UndergraduateController@addUndergradView')->name('add.undergrad.view');
 
     Route::post('submit-programs', 'UndergraduateController@addUndergradSubmit')->name('add.undergrad.submit');
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::post('delete-programs', 'UndergraduateController@deleteUndergrad')->name('delete.undergrad');
 
 
+    ///////DEPARTMENT
     Route::get('add-department', 'UndergraduateController@addDepartmentView')->name('add.dept.view');
 
     Route::post('add-department', 'UndergraduateController@addDepartmentSubmit')->name('add.dept.submit');
@@ -42,7 +44,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('delete-department', 'UndergraduateController@deleteDepartment')->name('delete.department');
 
-
+    
+    ///////COURSE
     Route::get('add-course', 'UndergraduateController@addCourseView')->name('add.course.view');
 
     Route::post('add-course', 'UndergraduateController@addCourseSubmit')->name('add.course.submit');
@@ -55,7 +58,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('delete-course', 'UndergraduateController@deleteCourse')->name('delete.course');
 
-
+    
+    ///////SECTION
     Route::get('add-section', 'UndergraduateController@addSectionView')->name('add.section.view');
 
     Route::post('add-section', 'UndergraduateController@addSectionSubmit')->name('add.section.submit');
@@ -68,7 +72,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('delete-section', 'UndergraduateController@deleteSection')->name('delete.section');
 
-
+    
+    ///////STUDENT
     Route::get('add-students', 'UndergraduateController@addStudentView')->name('add.student.view');
 
     Route::post('add-students', 'UndergraduateController@addStudentSubmit')->name('add.student.submit');
@@ -82,20 +87,37 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
     Route::post('delete-student', 'UndergraduateController@deleteStudent')->name('delete.student');
 
 
+    ///////FACULTY
     Route::get('add-faculties', 'UndergraduateController@addFacultyView')->name('add.faculty.view');
 
     Route::post('add-faculties','UndergraduateController@addFacultySubmit')->name('add.faculty.submit');
 
 });
 
+    
+     //////ASSIGN FACULTY and STUDENT(LATER)
+Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'], function(){  
+
+    Route::get('assign-faculty', 'AssignmentController@assignFacultyView')->name('assign.faculty.view');
+
+    Route::post('find-course', 'AssignmentController@getCourse')->name('find.course');
+
+    Route::post('find-faculty', 'AssignmentController@getFaculty')->name('find.faculty');
+
+    Route::post('find-section', 'AssignmentController@getSection')->name('find.section');
+
+    Route::post('assign-faculty/add', 'AssignmentController@assignFacultySubmit')->name('assign.faculty.submit');
+
+});
+
+    //////LARAVEL EXCEL EXPORT
     Route::get('view-sections/excel','App\Http\Controllers\ExportController@exportSection')->name('export.section.excel');
     Route::get('view-students/excel', 'App\Http\Controllers\ExportController@exportStudent')->name('export.student.excel');
 
+
+    //////lARAVEL EXCEL IMPORT
     Route::get('add-department/excel', 'App\Http\Controllers\ImportController@importDepartmentView')->name('view.import.department');
     Route::post('add-department/excel', 'App\Http\Controllers\ImportController@importDepartmentSubmit')->name('submit.import.department');
 
     Route::get('add-course/excel', 'App\Http\Controllers\ImportController@importCourseView')->name('view.import.course');
     Route::post('add-course/excel', 'App\Http\Controllers\ImportController@importCourseSubmit')->name('submit.import.course');
-
-    Route::get('assign-faculty', 'App\Http\Controllers\AssignmentController@assignFacultyView')->name('assign.faculty.view');
-    Route::post('find-course','App\Http\Controllers\AssignmentController@assignFacultySubmit')->name('assign.faculty.submit');

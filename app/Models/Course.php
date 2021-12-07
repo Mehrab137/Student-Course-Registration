@@ -21,4 +21,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\Section');
     }
+
+    public function faculty()
+    {
+        return $this->hasOne('App\Models\Faculty');
+    }
 }

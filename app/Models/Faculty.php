@@ -13,4 +13,14 @@ class Faculty extends Model
     {
         return $this->belongsTo('App\Models\Department');
     }
+
+    public function course()
+    {
+        return $this->hasOne('App\Models\Course');
+    }
+
+    public function section()
+    {
+        return $this->hasOne('App\Models\Section');
+    }
 }

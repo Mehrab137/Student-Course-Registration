@@ -15,4 +15,9 @@ class Section extends Model
     {
         return $this->belongsTo('App\Models\Course');
     }
+
+    public function faculty()
+    {
+        return $this->hasOne('App\Models\Faculty');
+    }
 }
