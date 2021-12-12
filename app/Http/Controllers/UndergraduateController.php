@@ -577,6 +577,8 @@ class UndergraduateController extends Controller
 
         }
 
+        // $count = Student::getTotal();
+
         return view('view.view_students');
 
     }
