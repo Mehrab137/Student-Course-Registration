@@ -27,8 +27,8 @@
     @endif
 
     <div class="col-md-12 mt-2">
-
-        <a href="{{ route('export.student.excel') }}" class="btn btn-sm btn-success">Export as Spreadsheet</a>
+        {{-- <i class="fa fa-download" aria-hidden="true"></i> --}}
+        <a href="{{ route('export.student.excel') }}" class="btn btn-sm btn-success"><i class="fa fa-download" aria-hidden="true"></i> Export as Spreadsheet</a>
 
         <div class="table-responsive mt-3 shadow p-3 mb-5 bg-body rounded">
 

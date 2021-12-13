@@ -86,9 +86,10 @@
 
 </div>
 
-<div class="mt-3">
+<div class="mt-2">
 
     <p style="font-size: 20px; padding-left:16%">Click <a href="{{ route('view.import.course') }}">HERE</a> to upload Course Spreadsheet</p>
+    {{-- <a href="{{ route('view.import.course') }}" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i> Import Course Spreadsheet</a> --}}
 
 </div>
 
