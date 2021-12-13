@@ -1,9 +1,16 @@
 @extends('layout')
 
+@section('title', 'Edit Department')
+
 @section('content')
 
- <br>
-<h2>Edit Department</h2><br>
+<div class="row">
+
+    <div class="col-md-12 mt-3">
+
+        <h4>Edit Department</h4>
+
+    </div>
 
 @if(Session::has('alert_msg'))
 

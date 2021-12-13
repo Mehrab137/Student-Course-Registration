@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Add Section')
+
 @section('content')
 
 

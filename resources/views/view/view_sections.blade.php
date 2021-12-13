@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'View Sections')
+
 @section('content')
 
 <div class="row">
