@@ -82,7 +82,7 @@
                     </a>
                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('add.faculty.view') }}">Add</a></li>
-                            <li><a class="dropdown-item" href="">View</a></li>
+                            <li><a class="dropdown-item" href="{{ route('view.faculty.list') }}">View</a></li>
                        </ul>
                </li>
 

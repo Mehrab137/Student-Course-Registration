@@ -92,6 +92,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('add-faculties','UndergraduateController@addFacultySubmit')->name('add.faculty.submit');
 
+    Route::get('view-faculties', 'UndergraduateController@viewFacultyList')->name('view.faculty.list');
+
 });
 
     

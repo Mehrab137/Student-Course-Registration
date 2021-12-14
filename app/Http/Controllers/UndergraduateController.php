@@ -328,6 +328,37 @@ class UndergraduateController extends Controller
     public function addFacultySubmit(Request $request)
     {
 
+        $validator = $request->validate([
+
+            'faculty_name' => 'required',
+
+            'email_id' => 'required|email|unique:faculties,email_id',
+
+            'contact_number' => 'required|digits:11|unique:faculties,contact_number',
+
+            'address' => 'required|max:100',
+
+            'department_id' => 'required'
+
+        ],
+        [
+
+           'faculty_name.required' => 'Faculty name field is required',
+
+           'email_id.required' => 'Email field is required',
+
+           'email_id.unique' => 'Email already exists',
+
+           'contact_number.required' => 'Contact number field is required',
+
+           'contact_number.unique' => 'Contact number already exists',
+
+           'address.required' => 'Address field is required',
+           
+           'department_id.required' => 'Department must be selected' 
+
+        ]);
+
         $faculty = new Faculty();
 
         $faculty->faculty_name = $request->faculty_name;
@@ -342,7 +373,13 @@ class UndergraduateController extends Controller
 
         $faculty->save();
 
-        return back();
+        $alert = [
+
+            'alert_msg' => 'Faculty Added Successfully !'
+
+        ];
+
+        return back()->with($alert);
 
     }
 
@@ -580,6 +617,41 @@ class UndergraduateController extends Controller
         // $count = Student::getTotal();
 
         return view('view.view_students');
+
+    }
+
+    public function viewFacultyList(Request $request)
+    {
+
+        if($request->ajax()){
+
+            $faculty = Faculty::with(['department'])->get();
+
+            return Datatables::of($faculty)
+
+                            ->addIndexColumn()
+
+                            ->addColumn('action', function($row){
+
+                                return  '<a href=" " class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                
+                                <form action="" method="" style="display:inline">
+
+                                ' . csrf_field() . '
+
+                                <input type="hidden" name="" value="">
+
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+
+                                </form>';
+
+                                })
+
+                            ->make(true);
+
+        }
+
+        return view('view.view_faculties');
 
     }
 
