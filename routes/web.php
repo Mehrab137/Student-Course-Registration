@@ -110,6 +110,8 @@ Route::group(['prefix' => 'undergraduate', 'namespace' => 'App\Http\Controllers'
 
     Route::post('assign-faculty/add', 'AssignmentController@assignFacultySubmit')->name('assign.faculty.submit');
 
+    Route::get('view-faculty-schedule', 'AssignmentController@assignFacultyViewSchedule')->name('view.faculty.schedule');
+
 });
 
     //////LARAVEL EXCEL EXPORT

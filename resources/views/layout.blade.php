@@ -30,10 +30,10 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                          Undergraduate Programs
                     </a>
-                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="{{ route('add.undergrad.view') }}">Add</a></li>
                               <li><a class="dropdown-item" href="{{ route('view.undergrad.list') }}">View</a></li>
-                         </ul>
+                        </ul>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -50,7 +50,7 @@
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Courses
                      </a>
-                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('add.course.view') }}">Add</a></li>
                             <li><a class="dropdown-item" href="{{ route('view.course.list') }}">View</a></li>
                         </ul>
@@ -60,7 +60,7 @@
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sections
                      </a>
-                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <li><a class="dropdown-item" href="{{ route('add.section.view') }}">Add</a></li>
                              <li><a class="dropdown-item" href="{{ route('view.section.list') }}">View</a></li>
                         </ul>
@@ -80,21 +80,31 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        Faculty
                     </a>
-                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('add.faculty.view') }}">Add</a></li>
                             <li><a class="dropdown-item" href="{{ route('view.faculty.list') }}">View</a></li>
-                       </ul>
+                        </ul>
                </li>
 
                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                    Assign
-                </a>
-                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('assign.faculty.view') }}">Faculty</a></li>
-                        <li><a class="dropdown-item" href="">Student</a></li>
-                   </ul>
-           </li>
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('assign.faculty.view') }}">Faculty</a></li>
+                            <li><a class="dropdown-item" href="">Student</a></li>
+                        </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Schedule
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('view.faculty.schedule') }}">Faculty</a></li>
+                            <li><a class="dropdown-item" href="">Student</a></li>
+                        </ul>
+                </li>
             </ul>
               {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button> --}}

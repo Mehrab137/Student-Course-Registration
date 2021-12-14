@@ -60,4 +60,13 @@ class AssignmentController extends Controller
         return back();
 
     }
+
+    public function assignFacultyViewSchedule()
+    {
+
+        $faculty = Faculty::all();
+
+        return view('view.view_faculty_schedule', compact('faculty'));
+
+    }
 }
