@@ -400,7 +400,7 @@ class UndergraduateController extends Controller
 
                             ->addColumn('action', function($row) {
 
-                               return  '<a href="' . route('edit.undergrad.view', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                               return  '<a href="' . route('edit.undergrad.view', $row->id) . '" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                
                                <form action="' . route('delete.undergrad') .'" method="POST" style="display:inline">
 
@@ -408,7 +408,7 @@ class UndergraduateController extends Controller
 
                                <input type="hidden" name="undergrad_id" value="' . $row->id .'">
    
-                               <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                               <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
    
                            </form>';
                                
@@ -441,7 +441,7 @@ class UndergraduateController extends Controller
 
                             ->addColumn('action', function($row) {
 
-                               return  '<a href="' . route('edit.department.view', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                               return  '<a href="' . route('edit.department.view', $row->id) . '" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                
                                <form action="' . route('delete.department') .'" method="POST" style="display:inline">
 
@@ -449,7 +449,7 @@ class UndergraduateController extends Controller
 
                                <input type="hidden" name="department_id" value="' . $row->id .'">
    
-                               <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                               <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
    
                            </form>';
                                
@@ -482,7 +482,7 @@ class UndergraduateController extends Controller
 
                             ->addColumn('action', function($row) {
 
-                            return  '<a href="' . route('edit.course.view', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            return  '<a href="' . route('edit.course.view', $row->id) . '" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             
                             <form action="' . route('delete.course') .'" method="POST" style="display:inline">
 
@@ -490,7 +490,7 @@ class UndergraduateController extends Controller
 
                             <input type="hidden" name="course_id" value="' . $row->id .'">
 
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                             </form>';
                             
@@ -523,7 +523,7 @@ class UndergraduateController extends Controller
 
                             ->addColumn('action', function($row){
 
-                            return  '<a href="' . route('edit.section.view', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            return  '<a href="' . route('edit.section.view', $row->id) . '" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             
                             <form action="' . route('delete.section') .'" method="POST" style="display:inline">
 
@@ -531,7 +531,7 @@ class UndergraduateController extends Controller
 
                             <input type="hidden" name="section_id" value="' . $row->id .'">
 
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                             </form>';
 
@@ -576,7 +576,7 @@ class UndergraduateController extends Controller
                                 
                             ->addColumn('action', function($row){
 
-                                return  '<a href="' . route('edit.student.view', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                return  '<a href="' . route('edit.student.view', $row->id) . '" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 
                                 <form action="' . route('delete.student') .'" method="POST" style="display:inline">
 
@@ -584,7 +584,7 @@ class UndergraduateController extends Controller
 
                                 <input type="hidden" name="student_id" value="' . $row->id .'">
 
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                                 </form>';
 
@@ -633,7 +633,7 @@ class UndergraduateController extends Controller
 
                             ->addColumn('action', function($row){
 
-                                return  '<a href=" " class="btn btn-sm btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                return  '<a href=" " class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 
                                 <form action="" method="" style="display:inline">
 
@@ -641,7 +641,7 @@ class UndergraduateController extends Controller
 
                                 <input type="hidden" name="" value="">
 
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                                 </form>';
 
